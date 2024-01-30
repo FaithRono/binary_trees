@@ -19,6 +19,26 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	return (1 + (left_height > right_height ? left_height : right_height));
 }
 
+/**
+*bin_tree_count_nodes - counts nodes on a (sub)tree
+*@tree: pointer to node whose (sub)tree is to be traversed
+*Return: number of nodes
+*/
+
+int bin_tree_count_nodes(const binary_tree_t *tree)
+{
+	int left_count, right_count;
+
+	if (tree == NULL)
+		return (0);
+
+	left_count = bin_tree_count_nodes(tree->left);
+	right_count = bin_tree_count_nodes(tree->right);
+
+	return (1 + left_count + right_count);
+}
+
+
 
 /**
  * binary_tree_is_perfect - function cheching if bonary tree is perfect
