@@ -1,22 +1,25 @@
 #include "binary_trees.h"
+int binry_tree_height(const binary_tree_t *tree);
+int bin_tree_count_nodes(const binary_tree_t *tree);
 
 /**
- * binary_tree_height - the function that measures  the height of a binary tree
- * @tree:  is a pointer to the root node of the tree to check
- * Return: tree is NULL, your function must return 0
- */
+*binry_tree_height - calculates height of binary (sub)tree by traversing it's
+*  branches
+*@tree: pointer to node whose (sub)tree is to be traversed
+*Return: max path(height)
+*/
 
-size_t binary_tree_height(const binary_tree_t *tree)
+int binry_tree_height(const binary_tree_t *tree)
 {
-	size_t left_height, right_height;
+	int left_height, right_height;
 
 	if (tree == NULL)
-		return (0);
+		return (-1);
 
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
+	left_height = binry_tree_height(tree->left);
+	right_height = binry_tree_height(tree->right);
 
-	return (1 + (left_height > right_height ? left_height : right_height));
+	return (left_height > right_height ? left_height + 1 : right_height + 1);
 }
 
 /**
@@ -39,22 +42,21 @@ int bin_tree_count_nodes(const binary_tree_t *tree)
 }
 
 
-
 /**
- * binary_tree_is_perfect - function cheching if bonary tree is perfect
- * @tree:  is a pointer to the root node of the tree to check
- * Return: tree is NULL, your function must return 0
- */
+*binary_tree_is_perfect - checks if a binary tree is perfect
+*@tree: pointer to the root node of the tree to check
+*Return: 1 if tree is perfect, 0 if not
+*/
+
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t height_left, height_right;
+	int height, node_count;
 
 	if (tree == NULL)
 		return (0);
-	height_left = binary_tree_height(tree->left);
-	height_right = binary_tree_height(tree->right);
-	if (height_left == height_right)
-		return (binary_tree_is_perfect(tree->left) &&
-				binary_tree_is_perfect(tree->right));
-	return (0);
+
+	height = binry_tree_height(tree);
+	node_count = bin_tree_count_nodes(tree);
+
+	return ((1 << (height + 1)) - 1  == node_count);
 }
