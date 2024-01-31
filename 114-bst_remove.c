@@ -50,7 +50,7 @@ bst_t *bst_delete(bst_t *root, bst_t *node)
 
 	if (node->left == NULL)
 	{
-		if (parent != NULL && parent->left ==node)
+		if (parent != NULL && parent->left == node)
 			parent->left = node->right;
 		else if (parent != NULL)
 			parent->right = node->right;
