@@ -37,14 +37,14 @@ int checker(const binary_tree_t *tree, size_t idx, size_t size)
 }
 
 /**
- * binary_tree_complete - func to check if binary tree is complete
+ * binary_tree_is_complete - func to check if binary tree is complete
  * @tree: pointer to the root node
  * Return: 0 if false and 1 if true
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	size_t idx, size;
-	
+
 	if (tree == NULL)
 		return (0);
 	idx = 0;
